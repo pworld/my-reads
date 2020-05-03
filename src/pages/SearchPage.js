@@ -57,7 +57,7 @@ class ListPage extends React.Component {
           <button className="close-search" onClick={() => onBack() }>Close</button>
           <div className="search-books-input-wrapper">
 
-            <input type="text" placeholder="Search by title or author" onChange={(e) => this.updateQuery(e)}/>
+            <input type="text" placeholder="Search by title or author - Search Terms" onChange={(e) => this.updateQuery(e)}/>
 
           </div>
         </div>

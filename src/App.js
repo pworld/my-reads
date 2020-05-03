@@ -72,32 +72,28 @@ class BooksApp extends React.Component {
   }
 
   searchState(query) {
-    if(query === ''){
-      this.resetSearchState([])
-    } else {
-      search(query)
-      .then((books) => {
-        let searchBooks = []
-  
-        // Handle different response from servers
-        if (books.length > 0) {
-          // update api search book.shelf with state book.shelf
-          searchBooks = books.map(book => {
-            const filteredBook = this.state.books.filter(fb => fb.id === book.id.toString())
-            if(filteredBook.length > 0) {
-              book["shelf"] = filteredBook[0].shelf
-            }
-            return book
-          })
-        } else {
-          searchBooks = []
-        }
-        this.setState({
-          ...this.state,
-          search : searchBooks
+    search(query)
+    .then((books) => {
+      let searchBooks = []
+
+      // Handle different response from servers
+      if (books.length > 0) {
+        // update api search book.shelf with state book.shelf
+        searchBooks = books.map(book => {
+          const filteredBook = this.state.books.filter(fb => fb.id === book.id.toString())
+          if(filteredBook.length > 0) {
+            book["shelf"] = filteredBook[0].shelf
+          }
+          return book
         })
+      } else {
+        searchBooks = []
+      }
+      this.setState({
+        ...this.state,
+        search : searchBooks
       })
-    }
+    })
   }
 
   render() {
